@@ -9,7 +9,7 @@ object Texas extends App with ScoupImplicits{
   val waitUrl = Await.result(url,Duration.Inf)
   val docHtml = Scoup.parseHTML(waitUrl)
   val tableCon = docHtml.select("table")
-  val tableHeader = tableCon.select("thead tr th").map(_.text.trim).toList
+  val tableHeader = tableCon.select("thead tr th").toList
   val tableContent = tableCon.select("tbody tr").toList.map{row =>
     val column = row.select("td")
     Map(
